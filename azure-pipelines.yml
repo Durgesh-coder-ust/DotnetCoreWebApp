@@ -30,7 +30,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '**\*.sln'
-
+- task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
