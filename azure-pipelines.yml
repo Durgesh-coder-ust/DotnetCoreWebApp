@@ -22,6 +22,11 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'Durgesh-coder-ust'
     projectName: 'dotnetcoreDocker'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '*.sln'
+    feedsToUse: 'select'
 - task: VSBuild@1
   inputs:
     solution: '**\*.sln'
