@@ -34,3 +34,21 @@ steps:
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+- task: UniversalPackages@0
+  inputs:
+    command: 'download'
+    downloadDirectory: '$(System.DefaultWorkingDirectory)'
+    feedsToUse: 'internal'
+    vstsFeed: '2b66a97f-4183-47b0-92f1-2de112bfa22b'
+    vstsFeedPackage: 'f3caa9c6-53a4-4d13-b575-03c3a7c2af36'
+    vstsPackageVersion: '19.7.363'
+- task: CmdLine@2
+  inputs:
+    script: |
+      sudo mv $(System.DefaultWorkingDirectory)/twistcli /usr/bin/twistcli
+      sudo chmod +x /usr/bin/twistcli
