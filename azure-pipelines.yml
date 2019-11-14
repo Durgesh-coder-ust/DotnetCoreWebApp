@@ -40,9 +40,10 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'docker'
+    repository: 'DotNetWebCore'
     command: 'build'
     Dockerfile: '**/Dockerfile'
+    tags: '$(Build.BuildId)'
 - task: UniversalPackages@0
   inputs:
     command: 'download'
